@@ -1,0 +1,27 @@
+public static int test(List<Integer> input){
+		int x = 0;
+		int total = 0;
+		
+		if(input.size() == 0)
+			return total;
+		for(int i=input.size(); i>-1; i--){
+			int count = 0;
+			int supposed = i;
+			for(int j=x; j<i; j++){
+				count += input.get(j);
+			}
+			if(count < supposed){
+				while( x<input.size() && input.get(x) < 10){
+					if(input.get(x)+supposed-count < 10){
+						int tmp = input.remove(x);
+						input.add(x, tmp+supposed-count);
+						total += supposed-count;
+						break;
+					}
+					else
+						x++;
+				}
+			}
+		}
+		return total;
+	}
